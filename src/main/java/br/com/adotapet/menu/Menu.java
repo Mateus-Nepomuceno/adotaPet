@@ -40,7 +40,6 @@ public abstract class Menu {
                 opcao = this.sc.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Digite apenas números.");
-                sc.nextLine();
             }
         return opcao;
     }

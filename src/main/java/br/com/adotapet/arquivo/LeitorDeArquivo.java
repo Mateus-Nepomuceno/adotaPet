@@ -16,13 +16,14 @@ public class LeitorDeArquivo implements CarregaPerguntas {
     @Override
     public List<String> carrega() {
         List<String> perguntas = new ArrayList<>();
+
         try (FileReader fr = new FileReader(this.pathname); BufferedReader br = new BufferedReader(fr)) {
             String linha;
             while ((linha = br.readLine()) != null) {
                 perguntas.add(linha);
             }
         } catch (IOException e){
-            e.printStackTrace();
+            throw new RuntimeException("O arquivo não está disponível.");
         }
         return perguntas;
     }

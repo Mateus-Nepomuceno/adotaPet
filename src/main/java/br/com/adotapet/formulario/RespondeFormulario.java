@@ -24,38 +24,44 @@ public class RespondeFormulario {
         List<String> perguntas = this.formulario.getPerguntas();
 
         for (int i = 0; i < perguntas.size(); i++) {
-            System.out.println(perguntas.get(i));
-
-            String resposta = this.sc.nextLine();
-
-            switch (i) {
-                case 0:
-                    nomeSobrenome = resposta;
-                    ValidaRespostas.validaNomeSobrenome(nomeSobrenome);
-                    break;
-                case 1:
-                    tipo = resposta;
-                    tipoPet = TipoPet.tipoPetRelatorio(tipo);
-                    break;
-                case 2:
-                    sexo = resposta;
-                    tipoSexo = TipoSexo.sexoPetRelatorio(sexo);
-                    break;
-                case 3:
-                    endereco = resposta;
-                    break;
-                case 4:
-                    idade = Double.parseDouble(resposta);
-                    idade = ValidaRespostas.validaIdade(idade);
-                    break;
-                case 5:
-                    resposta = resposta.replace(",",".");
-                    peso = Double.parseDouble(resposta);
-                    ValidaRespostas.validaPeso(peso);
-                    break;
-                case 6:
-                    raca = resposta;
-                    break;
+            boolean respostaValida = false;
+            while (!respostaValida){
+                System.out.println(perguntas.get(i));
+                String resposta = this.sc.nextLine();
+                try {
+                    switch (i) {
+                        case 0:
+                            nomeSobrenome = resposta;
+                            ValidaRespostas.validaNomeSobrenome(nomeSobrenome);
+                            break;
+                        case 1:
+                            tipo = resposta;
+                            tipoPet = TipoPet.tipoPetRelatorio(tipo);
+                            break;
+                        case 2:
+                            sexo = resposta;
+                            tipoSexo = TipoSexo.sexoPetRelatorio(sexo);
+                            break;
+                        case 3:
+                            endereco = resposta;
+                            break;
+                        case 4:
+                            idade = Double.parseDouble(resposta);
+                            idade = ValidaRespostas.validaIdade(idade);
+                            break;
+                        case 5:
+                            resposta = resposta.replace(",",".");
+                            peso = Double.parseDouble(resposta);
+                            ValidaRespostas.validaPeso(peso);
+                            break;
+                        case 6:
+                            raca = resposta;
+                            break;
+                    }
+                    respostaValida = true;
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Erro: "+e.getMessage());
+                }
             }
         }
         this.formulario.criaPet(nomeSobrenome, tipoPet, tipoSexo, endereco, idade, peso, raca);

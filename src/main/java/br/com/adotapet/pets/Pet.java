@@ -1,7 +1,5 @@
 package br.com.adotapet.pets;
 
-import br.com.adotapet.formulario.Respostas;
-
 public class Pet {
     private String nomeSobrenome;
     private TipoPet tipoPet;
@@ -51,12 +49,12 @@ public class Pet {
 
     @Override
     public String toString() {
-        return "nomeSobrenome='" + nomeSobrenome +
-                ", tipoPet=" + tipoPet +
-                ", tipoSexo=" + tipoSexo +
-                ", endereco='" + endereco +
-                ", idade=" + idade +
-                ", peso=" + peso +
-                ", raca='" + raca;
+        return "Nome: " + nomeSobrenome +
+                ", Tipo: " + tipoPet.NOME_RELATORIO +
+                ", Sexo: " + tipoSexo.SEXO_RELATORIO +
+                ", Endereço: " + endereco +
+                ", Idade: " + idade +
+                ", Peso: " + peso +
+                ", Raça: " + raca;
     }
 }

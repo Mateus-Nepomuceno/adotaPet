@@ -3,9 +3,10 @@ package br.com.adotapet.formulario;
 import br.com.adotapet.pets.TipoPet;
 import br.com.adotapet.pets.TipoSexo;
 
+import java.util.List;
 import java.util.Scanner;
 
-public class RespondeFormulario  implements ValidaRespostas {
+public class RespondeFormulario {
     private Scanner sc;
     private Formulario formulario;
 
@@ -15,73 +16,48 @@ public class RespondeFormulario  implements ValidaRespostas {
     }
 
     public void responde() {
-        this.sc.nextLine();
         String nomeSobrenome = "", endereco = "", tipo = "", sexo = "", raca = "";
         TipoPet tipoPet = null;
         TipoSexo tipoSexo = null;
-
         double idade = 0, peso = 0;
-        for (int i = 0; i < this.formulario.getPerguntas().size(); i++) {
-            String pergunta = this.formulario.getPerguntas().get(i);
-            System.out.println(pergunta);
+
+        List<String> perguntas = this.formulario.getPerguntas();
+
+        for (int i = 0; i < perguntas.size(); i++) {
+            System.out.println(perguntas.get(i));
+
+            String resposta = this.sc.nextLine();
 
             switch (i) {
                 case 0:
-                    nomeSobrenome = this.sc.nextLine();
-                    this.validaNomeSobrenome(nomeSobrenome);
+                    nomeSobrenome = resposta;
+                    ValidaRespostas.validaNomeSobrenome(nomeSobrenome);
                     break;
                 case 1:
-                    tipo = this.sc.nextLine();
+                    tipo = resposta;
                     tipoPet = TipoPet.tipoPetRelatorio(tipo);
                     break;
                 case 2:
-                    sexo = this.sc.nextLine();
+                    sexo = resposta;
                     tipoSexo = TipoSexo.sexoPetRelatorio(sexo);
                     break;
                 case 3:
-                    endereco = this.sc.nextLine();
+                    endereco = resposta;
                     break;
                 case 4:
-                    idade = this.sc.nextDouble();
-                    idade = this.validaIdade(idade);
+                    idade = Double.parseDouble(resposta);
+                    idade = ValidaRespostas.validaIdade(idade);
                     break;
                 case 5:
-                    peso = this.sc.nextDouble();
-                    this.validaPeso(peso);
+                    resposta = resposta.replace(",",".");
+                    peso = Double.parseDouble(resposta);
+                    ValidaRespostas.validaPeso(peso);
                     break;
                 case 6:
-                    raca = this.sc.nextLine();
+                    raca = resposta;
                     break;
             }
         }
-        this.formulario.salvaRespostas(nomeSobrenome, tipoPet, tipoSexo, endereco, idade, peso, raca);
-    }
-
-    public Formulario getFormulario() {
-        return formulario;
-    }
-
-    @Override
-    public void validaNomeSobrenome(String nomeSobrenome) {
-        if (!nomeSobrenome.contains(" ")){
-            throw new IllegalArgumentException("O pet precisa ter nome e sobrenome.");
-        }
-    }
-
-    @Override
-    public void validaPeso(double peso) {
-        if (peso > 60 || peso < 0.5){
-            throw new IllegalArgumentException("O peso do pet é inválido.");
-        }
-    }
-
-    @Override
-    public double validaIdade(double idade) {
-        if (idade > 20){
-            throw new IllegalArgumentException("A idade do pet é inválida.");
-        } else if (idade < 1) {
-            idade = 0;
-        }
-        return idade;
+        this.formulario.criaPet(nomeSobrenome, tipoPet, tipoSexo, endereco, idade, peso, raca);
     }
 }

@@ -18,6 +18,7 @@ public class MenuValidado extends Menu {
                 isPermitido = true;
             }
         }
+        this.sc.nextLine();
         return valor;
     }
 }

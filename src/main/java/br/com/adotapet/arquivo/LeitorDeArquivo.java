@@ -1,4 +1,4 @@
-package br.com.adotapet.formulario;
+package br.com.adotapet.arquivo;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LeitorDeArquivo implements Carrega {
+public class LeitorDeArquivo implements CarregaPerguntas {
     private String pathname;
 
     public LeitorDeArquivo(String pathname) {
@@ -14,7 +14,7 @@ public class LeitorDeArquivo implements Carrega {
     }
 
     @Override
-    public List<String> carregaPerguntas() {
+    public List<String> carrega() {
         List<String> perguntas = new ArrayList<>();
         try (FileReader fr = new FileReader(this.pathname); BufferedReader br = new BufferedReader(fr)) {
             String linha;

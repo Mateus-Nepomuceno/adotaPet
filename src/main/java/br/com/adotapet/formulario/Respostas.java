@@ -1,8 +1,9 @@
-package br.com.adotapet.pets;
+package br.com.adotapet.formulario;
 
-import br.com.adotapet.formulario.Respostas;
+import br.com.adotapet.pets.TipoPet;
+import br.com.adotapet.pets.TipoSexo;
 
-public class Pet {
+public class Respostas {
     private String nomeSobrenome;
     private TipoPet tipoPet;
     private TipoSexo tipoSexo;
@@ -11,7 +12,7 @@ public class Pet {
     private double peso;
     private String raca;
 
-    public Pet(String nomeSobrenome, TipoPet tipoPet, TipoSexo tipoSexo, String endereco, double idade, double peso, String raca) {
+    public Respostas(String nomeSobrenome, TipoPet tipoPet, TipoSexo tipoSexo, String endereco, double idade, double peso, String raca) {
         this.nomeSobrenome = nomeSobrenome;
         this.tipoPet = tipoPet;
         this.tipoSexo = tipoSexo;
@@ -47,16 +48,5 @@ public class Pet {
 
     public String getRaca() {
         return raca;
-    }
-
-    @Override
-    public String toString() {
-        return "nomeSobrenome='" + nomeSobrenome +
-                ", tipoPet=" + tipoPet +
-                ", tipoSexo=" + tipoSexo +
-                ", endereco='" + endereco +
-                ", idade=" + idade +
-                ", peso=" + peso +
-                ", raca='" + raca;
     }
 }

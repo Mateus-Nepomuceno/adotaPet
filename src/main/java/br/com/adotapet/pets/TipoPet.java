@@ -10,7 +10,12 @@ public enum TipoPet {
         this.NOME_RELATORIO = NOME_RELATORIO;
     }
 
-    public String getNOME_RELATORIO() {
-        return NOME_RELATORIO;
+    public static TipoPet tipoPetRelatorio(String nomeRelatorio){
+        for (TipoPet tipoPet : values()) {
+            if(tipoPet.NOME_RELATORIO.equalsIgnoreCase(nomeRelatorio)){
+                return tipoPet;
+            }
+        }
+        throw new IllegalArgumentException("Tipo de pet inválido");
     }
 }

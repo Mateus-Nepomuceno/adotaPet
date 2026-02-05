@@ -10,7 +10,7 @@ public enum TipoSexo {
         this.SEXO_RELATORIO = SEXO_RELATORIO;
     }
 
-    public static TipoSexo sexoPetRelatorio(String sexoRelatorio){
+    public static TipoSexo retornaPetRelatorio(String sexoRelatorio){
         for (TipoSexo tipoPet : values()) {
             if(tipoPet.SEXO_RELATORIO.equalsIgnoreCase(sexoRelatorio)){
                 return tipoPet;

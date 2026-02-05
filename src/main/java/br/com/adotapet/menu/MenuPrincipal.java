@@ -42,6 +42,7 @@ public abstract class MenuPrincipal extends Menu {
                 opcao = this.sc.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Digite apenas números.");
+                this.sc.next();
             }
         return opcao;
     }
@@ -55,7 +56,7 @@ public abstract class MenuPrincipal extends Menu {
         }
     }
 
-    public void cadastraPet() {
+    private void cadastraPet() {
         RespondeFormulario respondeFormulario = new RespondeFormulario(this.sc, this.formulario);
         respondeFormulario.responde();
         Pet pet = this.formulario.getPet();

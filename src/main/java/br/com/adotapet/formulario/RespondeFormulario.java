@@ -12,6 +12,8 @@ import java.util.Scanner;
 public class RespondeFormulario {
     private Scanner sc;
     private Formulario formulario;
+    private static final String NAO_INFORMADO = "NÃO INFORMADO";
+    private static final String ERRO_CAMPO_VAZIO = "Erro: Este campo não pode ficar vazio.";
 
     public RespondeFormulario(Scanner sc, Formulario formulario) {
         this.sc = sc;
@@ -19,8 +21,7 @@ public class RespondeFormulario {
     }
 
     public void responde() {
-        String nomeSobrenome = "", raca = "", resposta = "";
-        Double peso = 0.0, idade = 0.0;
+        String nomeSobrenome = "", raca = "", resposta = "", peso = "", idade = "";
         TipoPet tipoPet = null;
         TipoSexo tipoSexo = null;
         Endereco endereco = null;
@@ -31,37 +32,67 @@ public class RespondeFormulario {
             boolean respostaValida = false;
             while (!respostaValida) {
                 System.out.println(perguntas.get(i));
-                if (i != 3) {
-                    resposta = this.sc.nextLine();
-                }
-                try {
-                    switch (i) {
-                        case 0: ValidaRespostas.validaNomeSobrenome(resposta); nomeSobrenome = resposta; break;
-                        case 1: tipoPet = TipoPet.tipoPetRelatorio(resposta); break;
-                        case 2: tipoSexo = TipoSexo.sexoPetRelatorio(resposta); break;
-                        case 3: endereco = identificaEndereco(); break;
-                        case 4: idade = ProcessaRespostas.processaIdade(resposta); break;
-                        case 5: peso = ProcessaRespostas.processaPeso(resposta); break;
-                        case 6: raca = resposta; break;
-                    }
+                if (i == 3) {
+                    endereco = criaEndereco();
                     respostaValida = true;
-                } catch (IllegalArgumentException e) {
-                    System.out.println("Erro: " + e.getMessage());
+                    continue;
+                }
+
+                resposta = this.sc.nextLine();
+
+                if (resposta.isEmpty()){
+                    if(i == 0 || i == 4 || i == 5 || i == 6){
+                        switch (i) {
+                            case 0: nomeSobrenome = NAO_INFORMADO; break;
+                            case 4: idade = NAO_INFORMADO; break;
+                            case 5: peso = NAO_INFORMADO; break;
+                            case 6: raca = NAO_INFORMADO; break;
+                        }
+                        respostaValida = true;
+                    } else {
+                        System.out.println(ERRO_CAMPO_VAZIO);
+                    }
+                } else {
+                    try {
+                        switch (i) {
+                            case 0: nomeSobrenome = ValidaRespostas.validaNomeSobrenome(resposta); break;
+                            case 1: tipoPet = TipoPet.retornaPetRelatorio(resposta); break;
+                            case 2: tipoSexo = TipoSexo.retornaPetRelatorio(resposta); break;
+                            case 4: idade = ProcessaRespostas.processaIdade(resposta); break;
+                            case 5: peso = ProcessaRespostas.processaPeso(resposta); break;
+                            case 6: raca = ValidaRespostas.validaRaca(resposta); break;
+                        }
+                        respostaValida = true;
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Erro: " + e.getMessage());
+                    }
                 }
             }
         }
         this.formulario.criaPet(nomeSobrenome, tipoPet, tipoSexo, endereco, idade, peso, raca);
     }
 
-    public Endereco identificaEndereco() {
-        String numCasa, cidade, rua;
+    private Endereco criaEndereco(){
+        String numCasa, cidade = "", rua = "";
         System.out.println("Digite o número da casa: ");
         numCasa = this.sc.nextLine();
-        System.out.println("Digite a cidade: ");
-        cidade = this.sc.nextLine();
-        System.out.println("Digite a rua: ");
-        rua = this.sc.nextLine();
+        if (numCasa.isEmpty()){
+            numCasa = NAO_INFORMADO;
+        }
 
+        cidade = repetirCampo(cidade,"cidade");
+        rua = repetirCampo(rua,"rua");
         return new Endereco(numCasa, cidade, rua);
+    }
+
+    private String repetirCampo(String resposta, String campo){
+        while (resposta.isEmpty()){
+            System.out.println("Digite a "+campo+": ");
+            resposta = this.sc.nextLine();
+            if (resposta.isEmpty()){
+                System.out.println(ERRO_CAMPO_VAZIO);
+            }
+        }
+        return resposta;
     }
 }

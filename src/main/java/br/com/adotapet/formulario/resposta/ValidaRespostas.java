@@ -1,8 +1,9 @@
-package br.com.adotapet.formulario;
+package br.com.adotapet.formulario.resposta;
 
 public class ValidaRespostas {
     public static void validaNomeSobrenome(String nomeSobrenome) {
-        if (!nomeSobrenome.contains(" ")){
+        String regex = "([a-zA-Z])+\\s([a-zA-Z])+";
+        if (!nomeSobrenome.matches(regex)){
             throw new IllegalArgumentException("O pet precisa ter nome e sobrenome.");
         }
     }
@@ -13,7 +14,7 @@ public class ValidaRespostas {
         }
     }
 
-    public static double validaIdade(double idade) {
+    public static Double validaIdade(double idade) {
         if (idade > 20){
             throw new IllegalArgumentException("A idade do pet é inválida.");
         } else if (idade < 1) {

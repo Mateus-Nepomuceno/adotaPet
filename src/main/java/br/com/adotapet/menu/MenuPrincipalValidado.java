@@ -2,9 +2,9 @@ package br.com.adotapet.menu;
 
 import java.util.Scanner;
 
-public class MenuValidado extends Menu {
+public class MenuPrincipalValidado extends MenuPrincipal {
 
-    public MenuValidado(Scanner sc) {
+    public MenuPrincipalValidado(Scanner sc) {
         super(sc);
     }
 

@@ -1,5 +1,6 @@
 package br.com.adotapet.formulario;
 
+import br.com.adotapet.endereco.Endereco;
 import br.com.adotapet.pets.Pet;
 import br.com.adotapet.pets.TipoPet;
 import br.com.adotapet.pets.TipoSexo;
@@ -14,7 +15,7 @@ public class Formulario {
         this.perguntas = perguntas;
     }
 
-    public void criaPet(String nomeSobrenome, TipoPet tipoPet, TipoSexo tipoSexo, String endereco, double idade, double peso, String raca){
+    public void criaPet(String nomeSobrenome, TipoPet tipoPet, TipoSexo tipoSexo, Endereco endereco, Double idade, Double peso, String raca){
         this.pet = new Pet(nomeSobrenome, tipoPet, tipoSexo, endereco, idade, peso, raca);
     }
 

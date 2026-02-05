@@ -1,15 +1,17 @@
 package br.com.adotapet.pets;
 
+import br.com.adotapet.endereco.Endereco;
+
 public class Pet {
     private String nomeSobrenome;
     private TipoPet tipoPet;
     private TipoSexo tipoSexo;
-    private String endereco;
-    private double idade;
-    private double peso;
+    private Endereco endereco;
+    private Double idade;
+    private Double peso;
     private String raca;
 
-    public Pet(String nomeSobrenome, TipoPet tipoPet, TipoSexo tipoSexo, String endereco, double idade, double peso, String raca) {
+    public Pet(String nomeSobrenome, TipoPet tipoPet, TipoSexo tipoSexo, Endereco endereco, Double idade, Double peso, String raca) {
         this.nomeSobrenome = nomeSobrenome;
         this.tipoPet = tipoPet;
         this.tipoSexo = tipoSexo;
@@ -31,15 +33,15 @@ public class Pet {
         return tipoSexo;
     }
 
-    public String getEndereco() {
+    public Endereco getEndereco() {
         return endereco;
     }
 
-    public double getIdade() {
+    public Double getIdade() {
         return idade;
     }
 
-    public double getPeso() {
+    public Double getPeso() {
         return peso;
     }
 

@@ -2,7 +2,7 @@ package br.com.adotapet.pets;
 
 public enum TipoSexo {
     MACHO("Macho"),
-    FEMEA("Fêmea");
+    FEMEA("Femea");
 
     public final String SEXO_RELATORIO;
 

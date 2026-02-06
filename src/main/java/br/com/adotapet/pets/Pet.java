@@ -2,6 +2,9 @@ package br.com.adotapet.pets;
 
 import br.com.adotapet.endereco.Endereco;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Pet {
     private String nomeSobrenome;
     private TipoPet tipoPet;
@@ -19,6 +22,22 @@ public class Pet {
         this.idade = idade;
         this.peso = peso;
         this.raca = raca;
+    }
+
+    public List<String> atributosPet(){
+        List<String> atributos = new ArrayList<>();
+        atributos.add(this.nomeSobrenome);
+        atributos.add(this.tipoPet.NOME_RELATORIO);
+        atributos.add(this.tipoSexo.SEXO_RELATORIO);
+        atributos.add(this.endereco.enderecoCompleto());
+        atributos.add(this.idade);
+        atributos.add(this.peso);
+        atributos.add(this.raca);
+        return atributos;
+    }
+
+    public String getNomeSobrenome() {
+        return nomeSobrenome;
     }
 
     @Override

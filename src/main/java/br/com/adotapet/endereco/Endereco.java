@@ -11,6 +11,10 @@ public class Endereco {
         this.rua = rua;
     }
 
+    public String enderecoCompleto() {
+        return this.numeroCasa + ", " + this.cidade + ", " + this.rua;
+    }
+
     @Override
     public String toString() {
         return "(Número: " + numeroCasa +

@@ -2,13 +2,16 @@ package br.com.adotapet.formulario.resposta;
 
 public class ProcessaRespostas {
     public static String processaIdade(String resposta){
+        resposta = ValidaRespostas.validaEntradaNumerica(resposta);
         double valor = Double.parseDouble(resposta);
-        return ValidaRespostas.validaIdade(valor);
+        resposta = ValidaRespostas.validaIdade(valor);
+        return resposta + " anos";
     }
 
     public static String processaPeso(String resposta){
-        resposta = ValidaRespostas.validaEntradaPeso(resposta);
+        resposta = ValidaRespostas.validaEntradaNumerica(resposta);
         double valor = Double.parseDouble(resposta);
-        return ValidaRespostas.validaPeso(valor);
+        ValidaRespostas.validaPeso(valor);
+        return resposta + "kg";
     }
 }

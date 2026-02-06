@@ -11,6 +11,8 @@ public class Main {
             Menu menu = new MenuPrincipalValidado(sc);
             int opcao = menu.escolheOpcao();
             menu.executaOpcao(opcao);
+        } catch (RuntimeException e){
+            System.out.println(e.getMessage());
         }
     }
 }

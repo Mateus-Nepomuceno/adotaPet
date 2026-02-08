@@ -10,9 +10,9 @@ public enum TipoPet {
         this.NOME_RELATORIO = NOME_RELATORIO;
     }
 
-    public static TipoPet retornaPetRelatorio(String nomeRelatorio){
+    public static TipoPet retornaPetRelatorio(String nome){
         for (TipoPet tipoPet : values()) {
-            if(tipoPet.NOME_RELATORIO.equalsIgnoreCase(nomeRelatorio)){
+            if(tipoPet.NOME_RELATORIO.equalsIgnoreCase(nome)){
                 return tipoPet;
             }
         }

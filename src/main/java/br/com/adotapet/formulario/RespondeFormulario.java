@@ -21,7 +21,7 @@ public class RespondeFormulario {
     }
 
     public void responde() {
-        String nomeSobrenome = "", raca = "", resposta = "", peso = "", idade = "";
+        String resposta, nomeSobrenome = "", raca = "", peso = "", idade = "";
         TipoPet tipoPet = null;
         TipoSexo tipoSexo = null;
         Endereco endereco = null;
@@ -82,6 +82,7 @@ public class RespondeFormulario {
 
         cidade = repetirCampo(cidade,"cidade");
         rua = repetirCampo(rua,"rua");
+
         return new Endereco(numCasa, cidade, rua);
     }
 

@@ -29,7 +29,7 @@ public class Pet {
         atributos.add(this.nomeSobrenome);
         atributos.add(this.tipoPet.NOME_RELATORIO);
         atributos.add(this.tipoSexo.SEXO_RELATORIO);
-        atributos.add(this.endereco.enderecoCompleto());
+        atributos.add(this.endereco.toString());
         atributos.add(this.idade);
         atributos.add(this.peso);
         atributos.add(this.raca);
@@ -37,17 +37,37 @@ public class Pet {
     }
 
     public String getNomeSobrenome() {
-        return nomeSobrenome;
+        return this.nomeSobrenome;
+    }
+
+    public TipoPet getTipoPet() {
+        return tipoPet;
+    }
+
+    public TipoSexo getTipoSexo() {
+        return tipoSexo;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public String getIdade() {
+        return idade;
+    }
+
+    public String getPeso() {
+        return peso;
+    }
+
+    public String getRaca() {
+        return raca;
     }
 
     @Override
     public String toString() {
-        return "Nome: " + nomeSobrenome +
-                ", Tipo: " + tipoPet.NOME_RELATORIO +
-                ", Sexo: " + tipoSexo.SEXO_RELATORIO +
-                ", Endereço: " + endereco +
-                ", Idade: " + idade +
-                ", Peso: " + peso +
-                ", Raça: " + raca;
+        return this.nomeSobrenome + " - " + this.tipoPet.NOME_RELATORIO +
+                " - " + this.tipoSexo.SEXO_RELATORIO + " - " + this.endereco + " - " +
+                this.idade + " - " + this.peso + " - " + this.raca;
     }
 }

@@ -21,9 +21,10 @@ public class GeraArquivoPet {
         try(FileWriter fw = new FileWriter(this.pathname+nomeArquivo); BufferedWriter bw = new BufferedWriter(fw)) {
             List<String> atributos = pet.atributosPet();
             for (int i = 0; i < atributos.size(); i++) {
-                bw.write(i+1+" - "+atributos.get(i));
+                bw.write((i+1)+" - "+atributos.get(i));
                 bw.newLine();
             }
+            bw.flush();
         } catch (IOException e) {
             throw new RuntimeException("Ocorreu um erro ao gerar o arquivo.");
         }

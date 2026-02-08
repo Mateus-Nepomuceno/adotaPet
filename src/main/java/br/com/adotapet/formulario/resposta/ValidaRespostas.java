@@ -36,7 +36,7 @@ public class ValidaRespostas {
     }
 
     public static String validaRaca(String raca){
-        String regex = "([a-zA-Z])+";
+        String regex = "([a-zA-Z\\s])+";
         if (!raca.matches(regex)){
             throw new IllegalArgumentException("A raça do pet é inválida, use apenas letras.");
         }

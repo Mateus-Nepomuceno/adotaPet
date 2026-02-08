@@ -72,14 +72,14 @@ public class MenuBusca extends Menu {
     public void iniciar(){
         List<Pet> petsBusca = new ArrayList<>(this.petsCadastrados);
         TipoPet tipoPet = recebeTipo();
-        List<Pet> petsEncontrados = FiltraPets.filtraPorTipo(tipoPet,petsBusca);
-        petsEncontrados = recebeCriterio(petsEncontrados);
+        FiltraPets.filtraPorTipo(tipoPet,petsBusca);
+        recebeCriterio(petsBusca);
         System.out.print("Deseja adicionar outro critério (s/n)? ");
         String resposta = this.sc.nextLine();
         if (resposta.equalsIgnoreCase("s")){
-            petsEncontrados = recebeCriterio(petsEncontrados);
+            recebeCriterio(petsBusca);
         }
-        printaPetsEncontrados(petsEncontrados);
+        printaPetsEncontrados(petsBusca);
     }
 
     private void printaPetsEncontrados(List<Pet> petsEncontrados){
@@ -92,11 +92,11 @@ public class MenuBusca extends Menu {
         }
     }
 
-    private List<Pet> recebeCriterio(List<Pet> listaPets){
+    private void recebeCriterio(List<Pet> listaPets){
         int opcao = escolheOpcao();
         System.out.print("Digite o critério: ");
         String pesquisa = this.sc.nextLine();
-        return executaOpcao(opcao, pesquisa, listaPets);
+        executaOpcao(opcao, pesquisa, listaPets);
     }
 
     private TipoPet recebeTipo(){

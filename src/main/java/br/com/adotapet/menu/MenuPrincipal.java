@@ -69,6 +69,7 @@ public class MenuPrincipal extends Menu {
     public void executaOpcao(int opcao) {
         switch (opcao){
             case 1: cadastraPet(); break;
+            case 2: alterarDadosPet(); break;
             case 4: listaPets(); break;
             case 5: buscaPet(); break;
         }
@@ -85,7 +86,7 @@ public class MenuPrincipal extends Menu {
                 this.sc.nextLine();
             }
         }
-
+        System.out.println("ENCERRANDO ADOTAPET.");
     }
 
     private void cadastraPet() {
@@ -95,20 +96,30 @@ public class MenuPrincipal extends Menu {
         GeraArquivoPet geraArquivoPet = new GeraArquivoPet("petsCadastrados/");
         geraArquivoPet.geraArquivo(pet);
         this.petsCadastrados.add(pet);
+        System.out.println("PET CADASTRADO COM SUCESSO.");
     }
 
     private void listaPets(){
-        System.out.println("""
-                _________________________________________________________________________________
-                |||||||||              SISTEMA ADOTAPET - PETS CADASTRADOS              |||||||||
-                ---------------------------------------------------------------------------------""");
-        for (int i = 0; i < this.petsCadastrados.size(); i++) {
-            System.out.println((i+1)+". "+this.petsCadastrados.get(i));
+        if (!this.petsCadastrados.isEmpty()) {
+            System.out.println("""
+                        __________________________________________________________
+                        |||||||||            PETS CADASTRADOS            |||||||||
+                        ----------------------------------------------------------""");
+            for (int i = 0; i < this.petsCadastrados.size(); i++) {
+                System.out.println((i + 1) + ". " + this.petsCadastrados.get(i));
+            }
+            return;
         }
+
+        System.out.println("NENHUM PET CADASTRADO NO SISTEMA.");
     }
 
     private void buscaPet(){
         Menu menuBusca = new MenuBusca(this.sc,this.petsCadastrados);
         menuBusca.iniciar();
+    }
+
+    private void alterarDadosPet(){
+
     }
 }

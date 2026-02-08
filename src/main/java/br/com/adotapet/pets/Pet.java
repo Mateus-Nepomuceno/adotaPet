@@ -24,6 +24,62 @@ public class Pet {
         this.raca = raca;
     }
 
+    public String getNomeSobrenome() {
+        return nomeSobrenome;
+    }
+
+    public void setNomeSobrenome(String nomeSobrenome) {
+        this.nomeSobrenome = nomeSobrenome;
+    }
+
+    public TipoPet getTipoPet() {
+        return tipoPet;
+    }
+
+    public void setTipoPet(TipoPet tipoPet) {
+        this.tipoPet = tipoPet;
+    }
+
+    public TipoSexo getTipoSexo() {
+        return tipoSexo;
+    }
+
+    public void setTipoSexo(TipoSexo tipoSexo) {
+        this.tipoSexo = tipoSexo;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getIdade() {
+        return idade;
+    }
+
+    public void setIdade(String idade) {
+        this.idade = idade;
+    }
+
+    public String getPeso() {
+        return peso;
+    }
+
+    public void setPeso(String peso) {
+        this.peso = peso;
+    }
+
+    public String getRaca() {
+        return raca;
+    }
+
+    public void setRaca(String raca) {
+        this.raca = raca;
+    }
+
     public List<String> atributosPet(){
         List<String> atributos = new ArrayList<>();
         atributos.add(this.nomeSobrenome);
@@ -34,34 +90,6 @@ public class Pet {
         atributos.add(this.peso);
         atributos.add(this.raca);
         return atributos;
-    }
-
-    public String getNomeSobrenome() {
-        return this.nomeSobrenome;
-    }
-
-    public TipoPet getTipoPet() {
-        return tipoPet;
-    }
-
-    public TipoSexo getTipoSexo() {
-        return tipoSexo;
-    }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public String getIdade() {
-        return idade;
-    }
-
-    public String getPeso() {
-        return peso;
-    }
-
-    public String getRaca() {
-        return raca;
     }
 
     @Override

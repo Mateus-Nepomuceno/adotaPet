@@ -15,15 +15,15 @@ public class Formulario {
         this.perguntas = perguntas;
     }
 
-    protected void criaPet(String nomeSobrenome, TipoPet tipoPet, TipoSexo tipoSexo, Endereco endereco, String idade, String peso, String raca){
-        this.pet = new Pet(nomeSobrenome, tipoPet, tipoSexo, endereco, idade, peso, raca);
-    }
-
     public List<String> getPerguntas() {
         return perguntas;
     }
 
     public Pet getPet() {
         return pet;
+    }
+
+    protected void criaPet(String nomeSobrenome, TipoPet tipoPet, TipoSexo tipoSexo, Endereco endereco, String idade, String peso, String raca){
+        this.pet = new Pet(nomeSobrenome, tipoPet, tipoSexo, endereco, idade, peso, raca);
     }
 }

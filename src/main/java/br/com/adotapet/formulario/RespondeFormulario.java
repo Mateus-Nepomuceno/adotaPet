@@ -1,5 +1,6 @@
 package br.com.adotapet.formulario;
 
+import br.com.adotapet.endereco.GeraEndereco;
 import br.com.adotapet.endereco.Endereco;
 import br.com.adotapet.formulario.resposta.ProcessaRespostas;
 import br.com.adotapet.formulario.resposta.ValidaRespostas;
@@ -21,6 +22,7 @@ public class RespondeFormulario {
     }
 
     public void responde() {
+        GeraEndereco geraEndereco = new GeraEndereco(this.sc);
         String resposta, nomeSobrenome = "", raca = "", peso = "", idade = "";
         TipoPet tipoPet = null;
         TipoSexo tipoSexo = null;
@@ -33,7 +35,7 @@ public class RespondeFormulario {
             while (!respostaValida) {
                 System.out.println(perguntas.get(i));
                 if (i == 3) {
-                    endereco = criaEndereco();
+                    endereco = geraEndereco.gera();
                     respostaValida = true;
                     continue;
                 }
@@ -70,30 +72,5 @@ public class RespondeFormulario {
             }
         }
         this.formulario.criaPet(nomeSobrenome, tipoPet, tipoSexo, endereco, idade, peso, raca);
-    }
-
-    private Endereco criaEndereco(){
-        String numCasa, cidade = "", rua = "";
-        System.out.println("Digite o número da casa: ");
-        numCasa = this.sc.nextLine();
-        if (numCasa.isEmpty()){
-            numCasa = NAO_INFORMADO;
-        }
-
-        cidade = repetirCampo(cidade,"cidade");
-        rua = repetirCampo(rua,"rua");
-
-        return new Endereco(numCasa, cidade, rua);
-    }
-
-    private String repetirCampo(String resposta, String campo){
-        while (resposta.isEmpty()){
-            System.out.println("Digite a "+campo+": ");
-            resposta = this.sc.nextLine();
-            if (resposta.isEmpty()){
-                System.out.println(ERRO_CAMPO_VAZIO);
-            }
-        }
-        return resposta;
     }
 }

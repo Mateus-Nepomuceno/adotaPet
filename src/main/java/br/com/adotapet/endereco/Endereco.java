@@ -11,18 +11,6 @@ public class Endereco {
         this.rua = rua;
     }
 
-    public String getNumeroCasa() {
-        return numeroCasa;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public String getRua() {
-        return rua;
-    }
-
     @Override
     public String toString() {
         return this.rua + ", " + this.numeroCasa +

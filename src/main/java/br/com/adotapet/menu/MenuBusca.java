@@ -12,10 +12,15 @@ import java.util.Scanner;
 public class MenuBusca extends Menu {
     private Scanner sc;
     private List<Pet> petsCadastrados;
+    private List<Pet> petsBusca;
 
     public MenuBusca(Scanner sc, List<Pet> petsCadastrados) {
         this.sc = sc;
         this.petsCadastrados = petsCadastrados;
+    }
+
+    public List<Pet> getPetsBusca() {
+        return petsBusca;
     }
 
     @Override
@@ -56,7 +61,7 @@ public class MenuBusca extends Menu {
         return valor;
     }
 
-    public List<Pet> executaOpcao(int opcao, String pesquisa, List<Pet> listaPets) {
+    public void executaOpcao(int opcao, String pesquisa, List<Pet> listaPets) {
         switch (opcao){
             case 1: FiltraPets.filtraPorNomeSobrenome(pesquisa, listaPets); break;
             case 2: FiltraPets.filtraPorSexo(pesquisa, listaPets); break;
@@ -65,21 +70,24 @@ public class MenuBusca extends Menu {
             case 5: FiltraPets.filtraPorRaca(pesquisa, listaPets); break;
             case 6: FiltraPets.filtraPorPeso(pesquisa, listaPets); break;
         }
-        return listaPets;
     }
 
     @Override
     public void iniciar(){
-        List<Pet> petsBusca = new ArrayList<>(this.petsCadastrados);
-        TipoPet tipoPet = recebeTipo();
-        FiltraPets.filtraPorTipo(tipoPet,petsBusca);
-        recebeCriterio(petsBusca);
-        System.out.print("Deseja adicionar outro critério (s/n)? ");
-        String resposta = this.sc.nextLine();
-        if (resposta.equalsIgnoreCase("s")){
-            recebeCriterio(petsBusca);
+        if (!this.petsCadastrados.isEmpty()) {
+            this.petsBusca = new ArrayList<>(this.petsCadastrados);
+            TipoPet tipoPet = recebeTipo();
+            FiltraPets.filtraPorTipo(tipoPet, this.petsBusca);
+            recebeCriterio(this.petsBusca);
+            System.out.print("Deseja adicionar outro critério (s/n)? ");
+            String resposta = this.sc.nextLine();
+            if (resposta.equalsIgnoreCase("s")) {
+                recebeCriterio(this.petsBusca);
+            }
+            printaPetsEncontrados(this.petsBusca);
+            return;
         }
-        printaPetsEncontrados(petsBusca);
+        System.out.println("NENHUM PET CADASTRADO NO SISTEMA.");
     }
 
     private void printaPetsEncontrados(List<Pet> petsEncontrados){
@@ -106,9 +114,9 @@ public class MenuBusca extends Menu {
         while (!tipoValido) {
             try {
                 System.out.println("""
-                        ______________________________________________________
-                        |||||||||            BUSCA DE PETS           |||||||||
-                        ------------------------------------------------------""");
+                        ___________________________________________________________
+                        |||||||||              BUSCA DE PETS              |||||||||
+                        -----------------------------------------------------------""");
                 System.out.print("Qual o tipo do pet (Cachorro/Gato)? ");
                 resposta = this.sc.nextLine();
                 tipoPet = TipoPet.retornaPetRelatorio(resposta);

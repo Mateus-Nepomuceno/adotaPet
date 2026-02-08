@@ -26,13 +26,10 @@ public class ValidaRespostas {
         }
     }
 
-    public static String validaIdade(double idade) {
+    public static void validaIdade(double idade) {
         if (idade > 20){
             throw new IllegalArgumentException("A idade do pet é inválida, precisa ser menor que 20.");
-        } else if (idade < 1) {
-            return "0.x";
         }
-        return String.valueOf(idade);
     }
 
     public static String validaRaca(String raca){

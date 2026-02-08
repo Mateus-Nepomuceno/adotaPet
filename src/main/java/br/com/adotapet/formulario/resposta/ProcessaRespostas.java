@@ -4,7 +4,7 @@ public class ProcessaRespostas {
     public static String processaIdade(String resposta){
         resposta = ValidaRespostas.validaEntradaNumerica(resposta);
         double valor = Double.parseDouble(resposta);
-        resposta = ValidaRespostas.validaIdade(valor);
+        ValidaRespostas.validaIdade(valor);
         return resposta + " anos";
     }
 

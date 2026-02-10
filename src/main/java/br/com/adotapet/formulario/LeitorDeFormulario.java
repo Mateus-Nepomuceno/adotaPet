@@ -1,4 +1,6 @@
-package br.com.adotapet.arquivo;
+package br.com.adotapet.formulario;
+
+import br.com.adotapet.formulario.controle.CarregaPerguntas;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,10 +8,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LeitorDeArquivo implements CarregaPerguntas {
+public class LeitorDeFormulario implements CarregaPerguntas {
     private String pathname;
 
-    public LeitorDeArquivo(String pathname) {
+    public LeitorDeFormulario(String pathname) {
         this.pathname = pathname;
     }
 

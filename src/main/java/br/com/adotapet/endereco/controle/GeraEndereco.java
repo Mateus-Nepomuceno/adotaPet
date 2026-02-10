@@ -1,4 +1,6 @@
-package br.com.adotapet.endereco;
+package br.com.adotapet.endereco.controle;
+
+import br.com.adotapet.endereco.Endereco;
 
 import java.util.Scanner;
 

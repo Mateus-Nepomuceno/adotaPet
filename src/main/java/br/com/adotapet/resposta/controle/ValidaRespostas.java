@@ -1,4 +1,4 @@
-package br.com.adotapet.formulario.resposta;
+package br.com.adotapet.resposta.controle;
 
 public class ValidaRespostas {
     public static String validaNomeSobrenome(String nomeSobrenome) {

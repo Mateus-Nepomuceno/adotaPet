@@ -1,4 +1,4 @@
-package br.com.adotapet.pets;
+package br.com.adotapet.pet;
 
 public enum TipoPet {
     CACHORRO("Cachorro"),

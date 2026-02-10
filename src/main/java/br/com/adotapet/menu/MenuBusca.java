@@ -1,8 +1,9 @@
 package br.com.adotapet.menu;
 
-import br.com.adotapet.menu.filtra.FiltraPets;
-import br.com.adotapet.pets.Pet;
-import br.com.adotapet.pets.TipoPet;
+import br.com.adotapet.menu.controle.Menu;
+import br.com.adotapet.pet.controle.FiltraPets;
+import br.com.adotapet.pet.Pet;
+import br.com.adotapet.pet.TipoPet;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -17,10 +18,24 @@ public class MenuBusca extends Menu {
     public MenuBusca(Scanner sc, List<Pet> petsCadastrados) {
         this.sc = sc;
         this.petsCadastrados = petsCadastrados;
+        this.petsBusca = new ArrayList<>(this.petsCadastrados);
     }
 
     public List<Pet> getPetsBusca() {
         return petsBusca;
+    }
+
+    @Override
+    public void iniciar(){
+        TipoPet tipoPet = recebeTipo();
+        FiltraPets.filtraPorTipo(tipoPet, this.petsBusca);
+        recebeCriterio(this.petsBusca);
+        System.out.print("Deseja adicionar outro critério (s/n)? ");
+        String resposta = this.sc.nextLine();
+        if (resposta.equalsIgnoreCase("s")) {
+            recebeCriterio(this.petsBusca);
+        }
+        printaPetsEncontrados(this.petsBusca);
     }
 
     @Override
@@ -29,7 +44,7 @@ public class MenuBusca extends Menu {
                 _________________________________________________________________________________
                 |||||||||               BUSCA DE PET - CRITÉRIOS DE BUSCA               |||||||||
                 ---------------------------------------------------------------------------------
-                |  1. Nome ou sobrenome   2. Sexo   3. Idade   4. Endereço   5. Raca   6. Peso  |
+                |  1. Nome ou sobrenome   2. Sexo   3. Endereço   4. Idade   5. Peso   6. Raca  |
                 ---------------------------------------------------------------------------------""");
         System.out.print("Digite o número da opção que deseja: ");
     }
@@ -61,36 +76,18 @@ public class MenuBusca extends Menu {
         return valor;
     }
 
-    public void executaOpcao(int opcao, String pesquisa, List<Pet> listaPets) {
+    private void executaOpcao(int opcao, String pesquisa, List<Pet> listaPets) {
         switch (opcao){
             case 1: FiltraPets.filtraPorNomeSobrenome(pesquisa, listaPets); break;
             case 2: FiltraPets.filtraPorSexo(pesquisa, listaPets); break;
-            case 3: FiltraPets.filtraPorIdade(pesquisa, listaPets); break;
-            case 4: FiltraPets.filtraPorEndereco(pesquisa, listaPets); break;
-            case 5: FiltraPets.filtraPorRaca(pesquisa, listaPets); break;
-            case 6: FiltraPets.filtraPorPeso(pesquisa, listaPets); break;
+            case 3: FiltraPets.filtraPorEndereco(pesquisa, listaPets); break;
+            case 4: FiltraPets.filtraPorIdade(pesquisa, listaPets); break;
+            case 5: FiltraPets.filtraPorPeso(pesquisa, listaPets); break;
+            case 6: FiltraPets.filtraPorRaca(pesquisa, listaPets); break;
         }
     }
 
-    @Override
-    public void iniciar(){
-        if (!this.petsCadastrados.isEmpty()) {
-            this.petsBusca = new ArrayList<>(this.petsCadastrados);
-            TipoPet tipoPet = recebeTipo();
-            FiltraPets.filtraPorTipo(tipoPet, this.petsBusca);
-            recebeCriterio(this.petsBusca);
-            System.out.print("Deseja adicionar outro critério (s/n)? ");
-            String resposta = this.sc.nextLine();
-            if (resposta.equalsIgnoreCase("s")) {
-                recebeCriterio(this.petsBusca);
-            }
-            printaPetsEncontrados(this.petsBusca);
-            return;
-        }
-        System.out.println("NENHUM PET CADASTRADO NO SISTEMA.");
-    }
-
-    private void printaPetsEncontrados(List<Pet> petsEncontrados){
+    protected void printaPetsEncontrados(List<Pet> petsEncontrados){
         System.out.println("""
                 _________________________________________________________________________________
                 |||||||||                BUSCA DE PETS - PETS ENCONTRADOS               |||||||||

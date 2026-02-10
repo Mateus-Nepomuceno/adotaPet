@@ -1,7 +1,7 @@
-package br.com.adotapet.menu.filtra;
+package br.com.adotapet.pet.controle;
 
-import br.com.adotapet.pets.Pet;
-import br.com.adotapet.pets.TipoPet;
+import br.com.adotapet.pet.Pet;
+import br.com.adotapet.pet.TipoPet;
 
 import java.util.List;
 

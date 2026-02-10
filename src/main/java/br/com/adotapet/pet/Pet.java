@@ -1,4 +1,4 @@
-package br.com.adotapet.pets;
+package br.com.adotapet.pet;
 
 import br.com.adotapet.endereco.Endereco;
 
@@ -13,6 +13,7 @@ public class Pet {
     private String idade;
     private String peso;
     private String raca;
+    private String nomeArquivo;
 
     public Pet(String nomeSobrenome, TipoPet tipoPet, TipoSexo tipoSexo, Endereco endereco, String idade, String peso, String raca) {
         this.nomeSobrenome = nomeSobrenome;
@@ -36,16 +37,8 @@ public class Pet {
         return tipoPet;
     }
 
-    public void setTipoPet(TipoPet tipoPet) {
-        this.tipoPet = tipoPet;
-    }
-
     public TipoSexo getTipoSexo() {
         return tipoSexo;
-    }
-
-    public void setTipoSexo(TipoSexo tipoSexo) {
-        this.tipoSexo = tipoSexo;
     }
 
     public Endereco getEndereco() {
@@ -79,6 +72,10 @@ public class Pet {
     public void setRaca(String raca) {
         this.raca = raca;
     }
+
+    public String getNomeArquivo() { return nomeArquivo; }
+
+    public void setNomeArquivo(String nomeArquivo) { this.nomeArquivo = nomeArquivo; }
 
     public List<String> atributosPet(){
         List<String> atributos = new ArrayList<>();

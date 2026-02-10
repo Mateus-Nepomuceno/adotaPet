@@ -1,4 +1,4 @@
-package br.com.adotapet.menu;
+package br.com.adotapet.menu.controle;
 
 public abstract class Menu {
     public abstract void iniciar();

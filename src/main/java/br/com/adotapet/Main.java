@@ -1,6 +1,6 @@
 package br.com.adotapet;
 
-import br.com.adotapet.menu.Menu;
+import br.com.adotapet.menu.controle.Menu;
 import br.com.adotapet.menu.MenuPrincipal;
 
 import java.util.Scanner;

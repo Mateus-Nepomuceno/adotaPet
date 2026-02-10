@@ -1,10 +1,11 @@
 package br.com.adotapet.menu;
 
-import br.com.adotapet.arquivo.GeraArquivoPet;
-import br.com.adotapet.arquivo.LeitorDeArquivo;
+import br.com.adotapet.arquivo.ArquivoPet;
+import br.com.adotapet.formulario.LeitorDeFormulario;
 import br.com.adotapet.formulario.Formulario;
-import br.com.adotapet.formulario.RespondeFormulario;
-import br.com.adotapet.pets.Pet;
+import br.com.adotapet.formulario.controle.RespondeFormulario;
+import br.com.adotapet.menu.controle.Menu;
+import br.com.adotapet.pet.Pet;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -18,9 +19,23 @@ public class MenuPrincipal extends Menu {
 
     public MenuPrincipal(Scanner sc) {
         this.sc = sc;
-        LeitorDeArquivo leitorDeArquivo = new LeitorDeArquivo("src/main/resources/formulario.txt");
-        this.formulario = new Formulario(leitorDeArquivo.carrega());
+        LeitorDeFormulario leitorDeFormulario = new LeitorDeFormulario("src/main/resources/formulario.txt");
+        this.formulario = new Formulario(leitorDeFormulario.carrega());
         this.petsCadastrados = new ArrayList<>();
+    }
+
+    @Override
+    public void iniciar(){
+        int opcao = 0;
+        while (opcao != 6){
+            opcao = escolheOpcao();
+            executaOpcao(opcao);
+            if (opcao != 6) {
+                System.out.print("\nAPERTE ENTER PARA CONTINUAR.");
+                this.sc.nextLine();
+            }
+        }
+        System.out.println("ENCERRANDO ADOTAPET.");
     }
 
     @Override
@@ -66,7 +81,7 @@ public class MenuPrincipal extends Menu {
         return valor;
     }
 
-    public void executaOpcao(int opcao) {
+    private void executaOpcao(int opcao) {
         switch (opcao){
             case 1: cadastraPet(); break;
             case 2: alterarDadosPet(); break;
@@ -75,26 +90,12 @@ public class MenuPrincipal extends Menu {
         }
     }
 
-    @Override
-    public void iniciar(){
-        int opcao = 0;
-        while (opcao != 6){
-            opcao = escolheOpcao();
-            executaOpcao(opcao);
-            if (opcao != 6) {
-                System.out.print("\nAPERTE ENTER PARA CONTINUAR.");
-                this.sc.nextLine();
-            }
-        }
-        System.out.println("ENCERRANDO ADOTAPET.");
-    }
-
     private void cadastraPet() {
         RespondeFormulario respondeFormulario = new RespondeFormulario(this.sc, this.formulario);
         respondeFormulario.responde();
         Pet pet = this.formulario.getPet();
-        GeraArquivoPet geraArquivoPet = new GeraArquivoPet("petsCadastrados/");
-        geraArquivoPet.geraArquivo(pet);
+        ArquivoPet arquivoPet = new ArquivoPet("petsCadastrados/");
+        arquivoPet.gera(pet);
         this.petsCadastrados.add(pet);
         System.out.println("PET CADASTRADO COM SUCESSO.");
     }
@@ -115,11 +116,23 @@ public class MenuPrincipal extends Menu {
     }
 
     private void buscaPet(){
-        Menu menuBusca = new MenuBusca(this.sc,this.petsCadastrados);
-        menuBusca.iniciar();
+        if (!this.petsCadastrados.isEmpty()) {
+            Menu menuBusca = new MenuBusca(this.sc, this.petsCadastrados);
+            menuBusca.iniciar();
+            return;
+        }
+        System.out.println("NENHUM PET CADASTRADO NO SISTEMA.");
     }
 
     private void alterarDadosPet(){
-
+        if (!this.petsCadastrados.isEmpty()) {
+            MenuBusca menuBusca = new MenuBusca(this.sc, this.petsCadastrados);
+            menuBusca.iniciar();
+            List<Pet> petsBusca = new ArrayList<>(menuBusca.getPetsBusca());
+            Menu menuEdicao = new MenuEdicao(this.sc, this.formulario, this.petsCadastrados, petsBusca);
+            menuEdicao.iniciar();
+            return;
+        }
+        System.out.println("NENHUM PET CADASTRADO NO SISTEMA.");
     }
 }

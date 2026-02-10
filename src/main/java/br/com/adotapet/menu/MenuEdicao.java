@@ -31,7 +31,7 @@ public class MenuEdicao extends Menu {
         for (Pet petCadastrado : this.petsCadastrados) {
             if (petCadastrado == pet){
                 executaOpcao(opcao, petCadastrado);
-                ArquivoPet arquivoPet = new ArquivoPet("petsCadastrados/");
+                ArquivoPet arquivoPet = new ArquivoPet();
                 arquivoPet.edita(petCadastrado);
             }
         }
@@ -91,7 +91,7 @@ public class MenuEdicao extends Menu {
         int tamanhoLista = this.opcoesPet.size();
         while (numPet < 1 || numPet > tamanhoLista){
             try {
-                System.out.print("Digite o número da opção que deseja: ");
+                System.out.print("Digite o número do pet que deseja: ");
                 numPet = sc.nextInt();
                 if (numPet < 1 || numPet > tamanhoLista){
                     System.out.println("Erro: digite um número entre 1 e "+tamanhoLista);

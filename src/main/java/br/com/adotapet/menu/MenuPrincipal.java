@@ -94,7 +94,7 @@ public class MenuPrincipal extends Menu {
         RespondeFormulario respondeFormulario = new RespondeFormulario(this.sc, this.formulario);
         respondeFormulario.responde();
         Pet pet = this.formulario.getPet();
-        ArquivoPet arquivoPet = new ArquivoPet("petsCadastrados/");
+        ArquivoPet arquivoPet = new ArquivoPet();
         arquivoPet.gera(pet);
         this.petsCadastrados.add(pet);
         System.out.println("PET CADASTRADO COM SUCESSO.");

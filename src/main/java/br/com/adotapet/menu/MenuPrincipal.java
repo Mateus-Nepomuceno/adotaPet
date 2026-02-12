@@ -1,10 +1,14 @@
 package br.com.adotapet.menu;
 
 import br.com.adotapet.arquivo.ArquivoPet;
+import br.com.adotapet.arquivo.GeraDiretorio;
 import br.com.adotapet.formulario.LeitorDeFormulario;
 import br.com.adotapet.formulario.Formulario;
 import br.com.adotapet.formulario.controle.RespondeFormulario;
 import br.com.adotapet.menu.controle.Menu;
+import br.com.adotapet.menu.controle.MenuBusca;
+import br.com.adotapet.menu.controle.MenuEdicao;
+import br.com.adotapet.menu.controle.MenuExclusao;
 import br.com.adotapet.pet.Pet;
 
 import java.util.ArrayList;
@@ -16,12 +20,14 @@ public class MenuPrincipal extends Menu {
     private Scanner sc;
     private Formulario formulario;
     private List<Pet> petsCadastrados;
+    private static final String ERRO_NENHUM_PET = "NENHUM PET CADASTRADO NO SISTEMA.";
 
     public MenuPrincipal(Scanner sc) {
         this.sc = sc;
         LeitorDeFormulario leitorDeFormulario = new LeitorDeFormulario("src/main/resources/formulario.txt");
         this.formulario = new Formulario(leitorDeFormulario.carrega());
         this.petsCadastrados = new ArrayList<>();
+        GeraDiretorio.gera("petsCadastrados/");
     }
 
     @Override
@@ -85,16 +91,17 @@ public class MenuPrincipal extends Menu {
         switch (opcao){
             case 1: cadastraPet(); break;
             case 2: alterarDadosPet(); break;
+            case 3: deletarPet(); break;
             case 4: listaPets(); break;
             case 5: buscaPet(); break;
         }
     }
 
     private void cadastraPet() {
+        ArquivoPet arquivoPet = new ArquivoPet();
         RespondeFormulario respondeFormulario = new RespondeFormulario(this.sc, this.formulario);
         respondeFormulario.responde();
         Pet pet = this.formulario.getPet();
-        ArquivoPet arquivoPet = new ArquivoPet();
         arquivoPet.gera(pet);
         this.petsCadastrados.add(pet);
         System.out.println("PET CADASTRADO COM SUCESSO.");
@@ -112,7 +119,7 @@ public class MenuPrincipal extends Menu {
             return;
         }
 
-        System.out.println("NENHUM PET CADASTRADO NO SISTEMA.");
+        System.out.println(ERRO_NENHUM_PET);
     }
 
     private void buscaPet(){
@@ -121,7 +128,7 @@ public class MenuPrincipal extends Menu {
             menuBusca.iniciar();
             return;
         }
-        System.out.println("NENHUM PET CADASTRADO NO SISTEMA.");
+        System.out.println(ERRO_NENHUM_PET);
     }
 
     private void alterarDadosPet(){
@@ -133,6 +140,18 @@ public class MenuPrincipal extends Menu {
             menuEdicao.iniciar();
             return;
         }
-        System.out.println("NENHUM PET CADASTRADO NO SISTEMA.");
+        System.out.println(ERRO_NENHUM_PET);
+    }
+
+    private void deletarPet(){
+        if (!this.petsCadastrados.isEmpty()) {
+            MenuBusca menuBusca = new MenuBusca(this.sc, this.petsCadastrados);
+            menuBusca.iniciar();
+            List<Pet> petsBusca = new ArrayList<>(menuBusca.getPetsBusca());
+            Menu menuExclusao = new MenuExclusao(this.sc, petsBusca, this.petsCadastrados);
+            menuExclusao.iniciar();
+            return;
+        }
+        System.out.println(ERRO_NENHUM_PET);
     }
 }

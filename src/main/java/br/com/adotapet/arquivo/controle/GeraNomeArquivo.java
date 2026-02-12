@@ -7,9 +7,9 @@ import java.time.format.DateTimeFormatter;
 
 public class GeraNomeArquivo {
     public static String gera(Pet pet){
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("ddMMyyyy'T'Hmm");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd'T'Hmm");
         String data = LocalDateTime.now().format(dateTimeFormatter);
         String nomePet = pet.getNomeSobrenome().toUpperCase().replace(" ", "");
-        return data+"-"+nomePet+".txt";
+        return data+"-"+nomePet;
     }
 }

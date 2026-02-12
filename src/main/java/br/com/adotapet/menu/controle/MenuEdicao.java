@@ -1,8 +1,7 @@
-package br.com.adotapet.menu;
+package br.com.adotapet.menu.controle;
 
 import br.com.adotapet.arquivo.ArquivoPet;
 import br.com.adotapet.formulario.Formulario;
-import br.com.adotapet.menu.controle.Menu;
 import br.com.adotapet.pet.controle.EditaPet;
 import br.com.adotapet.pet.Pet;
 
@@ -10,7 +9,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class MenuEdicao extends Menu {
+public class MenuEdicao extends Menu implements SelecionaPet {
     private Scanner sc;
     private Formulario formulario;
     private List<Pet> opcoesPet;
@@ -29,10 +28,11 @@ public class MenuEdicao extends Menu {
         Pet pet = this.opcoesPet.get(numPet);
         int opcao = escolheOpcao();
         for (Pet petCadastrado : this.petsCadastrados) {
-            if (petCadastrado == pet){
+            if (petCadastrado.equals(pet)){
                 executaOpcao(opcao, petCadastrado);
                 ArquivoPet arquivoPet = new ArquivoPet();
                 arquivoPet.edita(petCadastrado);
+                break;
             }
         }
     }
@@ -86,12 +86,13 @@ public class MenuEdicao extends Menu {
         }
     }
 
-    private int escolheNumPet(){
+    @Override
+    public int escolheNumPet(){
         int numPet = -1;
         int tamanhoLista = this.opcoesPet.size();
         while (numPet < 1 || numPet > tamanhoLista){
             try {
-                System.out.print("Digite o número do pet que deseja: ");
+                System.out.print("Digite o número do pet que deseja alterar os dados: ");
                 numPet = sc.nextInt();
                 if (numPet < 1 || numPet > tamanhoLista){
                     System.out.println("Erro: digite um número entre 1 e "+tamanhoLista);

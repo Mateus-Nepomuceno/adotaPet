@@ -1,6 +1,5 @@
-package br.com.adotapet.menu;
+package br.com.adotapet.menu.controle;
 
-import br.com.adotapet.menu.controle.Menu;
 import br.com.adotapet.pet.controle.FiltraPets;
 import br.com.adotapet.pet.Pet;
 import br.com.adotapet.pet.TipoPet;

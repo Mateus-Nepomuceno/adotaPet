@@ -137,8 +137,6 @@ public class MenuPrincipal extends Menu {
             if (!petsBusca.isEmpty()) {
                 Menu menuEdicao = new MenuEdicao(this.sc, this.formulario, this.petsCadastrados, petsBusca);
                 menuEdicao.iniciar();
-            } else {
-                System.out.println("NENHUM PET ENCONTRADO PARA EDIÇÃO.");
             }
             return;
         }
@@ -153,8 +151,6 @@ public class MenuPrincipal extends Menu {
             if (!petsBusca.isEmpty()) {
                 Menu menuExclusao = new MenuExclusao(this.sc, petsBusca, this.petsCadastrados);
                 menuExclusao.iniciar();
-            } else {
-                System.out.println("NENHUM PET ENCONTRADO PARA EXCLUSÃO.");
             }
             return;
         }

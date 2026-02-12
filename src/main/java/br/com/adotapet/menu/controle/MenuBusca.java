@@ -34,7 +34,11 @@ public class MenuBusca extends Menu {
         if (resposta.equalsIgnoreCase("s")) {
             recebeCriterio(this.petsBusca);
         }
-        printaPetsEncontrados(this.petsBusca);
+        if (!this.petsBusca.isEmpty()) {
+            printaPetsEncontrados(this.petsBusca);
+        } else {
+            System.out.println("NENHUM PET ENCONTRADO.");
+        }
     }
 
     @Override

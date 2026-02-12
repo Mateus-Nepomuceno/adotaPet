@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-public class ArquivoPet implements EditaArquivo, GeraArquivo, EscreveArquivo, ExcluiArquivo {
+public class ArquivoPet implements RepoPet {
     private static final String PATHNAME = "petsCadastrados/";
     private static final String TIPO_ARQUIVO = ".txt";
 
@@ -17,10 +17,10 @@ public class ArquivoPet implements EditaArquivo, GeraArquivo, EscreveArquivo, Ex
     public void edita(Pet pet) {
         String nomeAntigo = pet.getNomeArquivo();
         String nomeNovo = GeraNomeArquivo.gera(pet);
-        pet.setNomeArquivo(nomeNovo);
         File file = new File(PATHNAME+nomeAntigo+TIPO_ARQUIVO);
         if (file.renameTo(new File(PATHNAME+nomeNovo+TIPO_ARQUIVO))){
-            System.out.println("ARQUIVO RENOMEADO COM SUCESSO.");
+            pet.setNomeArquivo(nomeNovo);
+            System.out.println("PET ALTERADO COM SUCESSO.");
         }
         escreve(pet,nomeNovo);
     }

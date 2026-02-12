@@ -11,7 +11,7 @@ public class Main {
             Menu menu = new MenuPrincipal(sc);
             menu.iniciar();
         } catch (RuntimeException e){
-            System.out.println("Erro: "+e.getMessage());
+            System.out.println("ERRO: "+e.getMessage());
         }
     }
 }

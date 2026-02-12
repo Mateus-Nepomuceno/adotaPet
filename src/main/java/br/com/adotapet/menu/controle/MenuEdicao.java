@@ -9,16 +9,13 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class MenuEdicao extends Menu implements SelecionaPet {
-    private Scanner sc;
+public class MenuEdicao extends MenuSelecao {
     private Formulario formulario;
-    private List<Pet> opcoesPet;
     private List<Pet> petsCadastrados;
 
     public MenuEdicao(Scanner sc, Formulario formulario, List<Pet> petsCadastrados, List<Pet> opcoesPet) {
-        this.sc = sc;
+        super(sc, opcoesPet);
         this.formulario = formulario;
-        this.opcoesPet = opcoesPet;
         this.petsCadastrados = petsCadastrados;
     }
 
@@ -84,24 +81,5 @@ public class MenuEdicao extends Menu implements SelecionaPet {
             case 4: editaPet.editaPeso(pet); break;
             case 5: editaPet.editaRaca(pet); break;
         }
-    }
-
-    @Override
-    public int escolheNumPet(){
-        int numPet = -1;
-        int tamanhoLista = this.opcoesPet.size();
-        while (numPet < 1 || numPet > tamanhoLista){
-            try {
-                System.out.print("Digite o número do pet que deseja alterar os dados: ");
-                numPet = sc.nextInt();
-                if (numPet < 1 || numPet > tamanhoLista){
-                    System.out.println("Erro: digite um número entre 1 e "+tamanhoLista);
-                }
-            } catch (InputMismatchException e){
-                System.out.println("Digite apenas números.");
-                this.sc.next();
-            }
-        }
-        return numPet - 1;
     }
 }

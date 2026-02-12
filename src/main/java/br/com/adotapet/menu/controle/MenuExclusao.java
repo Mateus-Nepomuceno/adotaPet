@@ -3,18 +3,16 @@ package br.com.adotapet.menu.controle;
 import br.com.adotapet.arquivo.ArquivoPet;
 import br.com.adotapet.pet.Pet;
 
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class MenuExclusao extends Menu implements SelecionaPet{
+public class MenuExclusao extends MenuSelecao {
     private Scanner sc;
     private List<Pet> opcoesPet;
     private List<Pet> petsCadastrados;
 
     public MenuExclusao(Scanner sc, List<Pet> opcoesPet, List<Pet> petsCadastrados) {
-        this.sc = sc;
-        this.opcoesPet = opcoesPet;
+        super(sc, opcoesPet);
         this.petsCadastrados = petsCadastrados;
     }
 
@@ -80,24 +78,5 @@ public class MenuExclusao extends Menu implements SelecionaPet{
         } else {
             System.out.println("EXCLUSÃO DE PET CANCELADA.");
         }
-    }
-
-    @Override
-    public int escolheNumPet() {
-        int numPet = -1;
-        int tamanhoLista = this.opcoesPet.size();
-        while (numPet < 1 || numPet > tamanhoLista){
-            try {
-                System.out.print("Digite o número do pet que deseja alterar os dados: ");
-                numPet = sc.nextInt();
-                if (numPet < 1 || numPet > tamanhoLista){
-                    System.out.println("Erro: digite um número entre 1 e "+tamanhoLista);
-                }
-            } catch (InputMismatchException e){
-                System.out.println("Digite apenas números.");
-                this.sc.next();
-            }
-        }
-        return numPet - 1;
     }
 }

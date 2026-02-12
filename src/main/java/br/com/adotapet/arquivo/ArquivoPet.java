@@ -15,15 +15,21 @@ public class ArquivoPet implements EditaArquivo, GeraArquivo, EscreveArquivo, Ex
 
     @Override
     public void edita(Pet pet) {
-        String nomeArquivo = pet.getNomeArquivo();
-        escreve(pet, PATHNAME, nomeArquivo);
+        String nomeAntigo = pet.getNomeArquivo();
+        String nomeNovo = GeraNomeArquivo.gera(pet);
+        pet.setNomeArquivo(nomeNovo);
+        File file = new File(PATHNAME+nomeAntigo+TIPO_ARQUIVO);
+        if (file.renameTo(new File(PATHNAME+nomeNovo+TIPO_ARQUIVO))){
+            System.out.println("ARQUIVO RENOMEADO COM SUCESSO.");
+        }
+        escreve(pet,nomeNovo);
     }
 
     @Override
     public void gera(Pet pet) {
         String nomeArquivo = GeraNomeArquivo.gera(pet);
         pet.setNomeArquivo(nomeArquivo);
-        escreve(pet, PATHNAME, nomeArquivo);
+        escreve(pet,nomeArquivo);
     }
 
     @Override
@@ -38,7 +44,7 @@ public class ArquivoPet implements EditaArquivo, GeraArquivo, EscreveArquivo, Ex
     }
 
     @Override
-    public void escreve(Pet pet, String pathname, String nomeArquivo){
+    public void escreve(Pet pet, String nomeArquivo){
         try(FileWriter fw = new FileWriter(PATHNAME+nomeArquivo+TIPO_ARQUIVO); BufferedWriter bw = new BufferedWriter(fw)) {
             List<String> atributos = pet.atributosPet();
             for (int i = 0; i < atributos.size(); i++) {

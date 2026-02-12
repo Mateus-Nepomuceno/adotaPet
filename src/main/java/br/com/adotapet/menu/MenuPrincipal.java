@@ -136,8 +136,12 @@ public class MenuPrincipal extends Menu {
             MenuBusca menuBusca = new MenuBusca(this.sc, this.petsCadastrados);
             menuBusca.iniciar();
             List<Pet> petsBusca = new ArrayList<>(menuBusca.getPetsBusca());
-            Menu menuEdicao = new MenuEdicao(this.sc, this.formulario, this.petsCadastrados, petsBusca);
-            menuEdicao.iniciar();
+            if (!petsBusca.isEmpty()) {
+                Menu menuEdicao = new MenuEdicao(this.sc, this.formulario, this.petsCadastrados, petsBusca);
+                menuEdicao.iniciar();
+            } else {
+                System.out.println("NENHUM PET ENCONTRADO PARA EDIÇÃO.");
+            }
             return;
         }
         System.out.println(ERRO_NENHUM_PET);
@@ -148,8 +152,12 @@ public class MenuPrincipal extends Menu {
             MenuBusca menuBusca = new MenuBusca(this.sc, this.petsCadastrados);
             menuBusca.iniciar();
             List<Pet> petsBusca = new ArrayList<>(menuBusca.getPetsBusca());
-            Menu menuExclusao = new MenuExclusao(this.sc, petsBusca, this.petsCadastrados);
-            menuExclusao.iniciar();
+            if (!petsBusca.isEmpty()) {
+                Menu menuExclusao = new MenuExclusao(this.sc, petsBusca, this.petsCadastrados);
+                menuExclusao.iniciar();
+            } else {
+                System.out.println("NENHUM PET ENCONTRADO PARA EXCLUSÃO.");
+            }
             return;
         }
         System.out.println(ERRO_NENHUM_PET);

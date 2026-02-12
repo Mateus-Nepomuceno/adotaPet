@@ -36,12 +36,11 @@ public class MenuEdicao extends MenuSelecao {
 
     @Override
     protected void printa() {
-        System.out.println("""
-                _________________________________________________________________________________
-                |||||||||             EDIÇÃO DE PET - OPÇÕES PARA ALTERAÇÃO             |||||||||
-                ---------------------------------------------------------------------------------
-                |   1. Nome ou sobrenome     2. Endereço     3. Idade     4. Peso     5. Raca   |
-                ---------------------------------------------------------------------------------""");
+        System.out.println("_________________________________________________________________________________");
+        System.out.println("|||||||||             EDIÇÃO DE PET - OPÇÕES PARA ALTERAÇÃO             |||||||||");
+        System.out.println("---------------------------------------------------------------------------------");
+        System.out.println("|   1. Nome ou sobrenome     2. Endereço     3. Idade     4. Peso     5. Raca   |");
+        System.out.println("---------------------------------------------------------------------------------");
         System.out.print("Digite o número da opção que deseja: ");
     }
 

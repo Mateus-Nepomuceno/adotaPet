@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MenuExclusao extends MenuSelecao {
-    private Scanner sc;
-    private List<Pet> opcoesPet;
     private List<Pet> petsCadastrados;
 
     public MenuExclusao(Scanner sc, List<Pet> opcoesPet, List<Pet> petsCadastrados) {
@@ -32,12 +30,11 @@ public class MenuExclusao extends MenuSelecao {
 
     @Override
     protected void printa() {
-        System.out.println("""
-                _________________________________________________________________
-                |||||||||                EXCLUSÃO DE PET                |||||||||
-                -----------------------------------------------------------------
-                |          DESEJA REALMENTE EXCLUIR O PET SELECIONADO?          |
-                -----------------------------------------------------------------""");
+        System.out.println("_________________________________________________________________");
+        System.out.println("|||||||||                EXCLUSÃO DE PET                |||||||||");
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("|          DESEJA REALMENTE EXCLUIR O PET SELECIONADO?          |");
+        System.out.println("-----------------------------------------------------------------");
         System.out.print("Digite (SIM/NÃO): ");
     }
 

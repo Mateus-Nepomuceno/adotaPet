@@ -46,17 +46,16 @@ public class MenuPrincipal extends Menu {
 
     @Override
     protected void printa() {
-        System.out.println("""
-                __________________________________________________________
-                |||||||||            SISTEMA ADOTAPET            |||||||||
-                ----------------------------------------------------------
-                | 1. Cadastrar um novo pet.                              |
-                | 2. Alterar os dados do pet cadastrado.                 |
-                | 3. Deletar um pet cadastrado.                          |
-                | 4. Listar todos os pets cadastrados.                   |
-                | 5. Listar pets por algum critério (idade, nome, raça). |
-                | 6. Sair.                                               |
-                ----------------------------------------------------------""");
+        System.out.println("__________________________________________________________");
+        System.out.println("|||||||||            SISTEMA ADOTAPET            |||||||||");
+        System.out.println("----------------------------------------------------------");
+        System.out.println("| 1. Cadastrar um novo pet.                              |");
+        System.out.println("| 2. Alterar os dados do pet cadastrado.                 |");
+        System.out.println("| 3. Deletar um pet cadastrado.                          |");
+        System.out.println("| 4. Listar todos os pets cadastrados.                   |");
+        System.out.println("| 5. Listar pets por algum critério (idade, nome, raça). |");
+        System.out.println("| 6. Sair.                                               |");
+        System.out.println("----------------------------------------------------------");
         System.out.print("Digite o número da opção que deseja: ");
     }
 
@@ -109,10 +108,9 @@ public class MenuPrincipal extends Menu {
 
     private void listaPets(){
         if (!this.petsCadastrados.isEmpty()) {
-            System.out.println("""
-                        __________________________________________________________
-                        |||||||||            PETS CADASTRADOS            |||||||||
-                        ----------------------------------------------------------""");
+            System.out.println("__________________________________________________________");
+            System.out.println("|||||||||            PETS CADASTRADOS            |||||||||");
+            System.out.println("----------------------------------------------------------");
             for (int i = 0; i < this.petsCadastrados.size(); i++) {
                 System.out.println((i + 1) + ". " + this.petsCadastrados.get(i));
             }

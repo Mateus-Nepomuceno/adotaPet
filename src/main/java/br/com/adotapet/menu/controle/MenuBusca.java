@@ -39,12 +39,11 @@ public class MenuBusca extends Menu {
 
     @Override
     protected void printa() {
-        System.out.println("""
-                _________________________________________________________________________________
-                |||||||||               BUSCA DE PET - CRITÉRIOS DE BUSCA               |||||||||
-                ---------------------------------------------------------------------------------
-                |  1. Nome ou sobrenome   2. Sexo   3. Endereço   4. Idade   5. Peso   6. Raca  |
-                ---------------------------------------------------------------------------------""");
+        System.out.println("_________________________________________________________________________________");
+        System.out.println("|||||||||               BUSCA DE PET - CRITÉRIOS DE BUSCA               |||||||||");
+        System.out.println("---------------------------------------------------------------------------------");
+        System.out.println("|  1. Nome ou sobrenome   2. Sexo   3. Endereço   4. Idade   5. Peso   6. Raca  |");
+        System.out.println("---------------------------------------------------------------------------------");
         System.out.print("Digite o número da opção que deseja: ");
     }
 
@@ -87,10 +86,9 @@ public class MenuBusca extends Menu {
     }
 
     protected void printaPetsEncontrados(List<Pet> petsEncontrados){
-        System.out.println("""
-                _________________________________________________________________________________
-                |||||||||                BUSCA DE PETS - PETS ENCONTRADOS               |||||||||
-                ---------------------------------------------------------------------------------""");
+        System.out.println("_________________________________________________________________________________");
+        System.out.println("|||||||||                BUSCA DE PETS - PETS ENCONTRADOS               |||||||||");
+        System.out.println("---------------------------------------------------------------------------------");
         for (int i = 0; i < petsEncontrados.size(); i++) {
             System.out.println((i+1)+". "+petsEncontrados.get(i));
         }
@@ -106,13 +104,12 @@ public class MenuBusca extends Menu {
     private TipoPet recebeTipo(){
         boolean tipoValido = false;
         TipoPet tipoPet = null;
-        String resposta = "";
+        String resposta;
         while (!tipoValido) {
             try {
-                System.out.println("""
-                        ___________________________________________________________
-                        |||||||||              BUSCA DE PETS              |||||||||
-                        -----------------------------------------------------------""");
+                System.out.println("___________________________________________________________");
+                System.out.println("|||||||||              BUSCA DE PETS              |||||||||");
+                System.out.println("-----------------------------------------------------------");
                 System.out.print("Qual o tipo do pet (Cachorro/Gato)? ");
                 resposta = this.sc.nextLine();
                 tipoPet = TipoPet.retornaPetRelatorio(resposta);

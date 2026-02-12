@@ -90,7 +90,7 @@ public class RetornaRespostas {
 
     public Endereco retornaEndereco(){
         GeraEndereco geraEndereco = new GeraEndereco(this.sc);
-        Endereco endereco = null;
+        Endereco endereco;
         System.out.println(this.perguntas.get(3));
         endereco = geraEndereco.gera();
         return endereco;
